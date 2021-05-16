@@ -18,7 +18,7 @@ import getRecipientEmail from '../utils/getRecipientEmail'
 function ChatScreen({ chat, messages }) {
   const [user] = useAuthState(auth)
   const [input, setInput] = useState('')
-  const endOfMessageRef = useRef(null)
+  const endOfMessagesRef = useRef(null)
   const router = useRouter()
   const [messagesSnapshot] = useCollection(
     db
@@ -54,7 +54,7 @@ function ChatScreen({ chat, messages }) {
   }
 
   const scrollToBottom = () => {
-    endOfMessageRef.current.scrollIntoView({
+    endOfMessagesRef.current.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
     })
@@ -122,7 +122,7 @@ function ChatScreen({ chat, messages }) {
 
       <MessageContainer>
         {showMessages()}
-        <EndOfMessage />
+        <EndOfMessage ref={endOfMessagesRef} />
       </MessageContainer>
 
       <InputContainer>
